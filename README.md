@@ -1,8 +1,8 @@
-# (Application Name)
+# Haiku Checker
 
 #### (Brief Description of Application)
 
-#### By Seung Lee
+#### By Seung Lee, Garrett Hays
 
 ## Technologies Used
 
@@ -39,9 +39,12 @@
 
 [GNU](/LICENSE-GNU)
 
-Copyright (c) 2022 Seung Lee
+Copyright (c) 2022 Seung Lee, Garrett Hays
 
 ## Contact Information
 
 Seung Lee
 shl7@uw.edu
+
+Garrett Hays
+garrettlhays@gmail.com
