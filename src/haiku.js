@@ -22,12 +22,25 @@ export default class Haiku {
     const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
     word = word.toLowerCase();
     const chars = word.split('');
+
     let numVowels = 0;
-    chars.forEach((element) => {
-      if (vowels.includes(element)) {
+    let previousLetter = chars[0];
+    // previousLetter = s
+    // s e a s o n
+    // starting the loop at e
+    for (let i = 1; i < chars.length; i++) {
+      let isCurrentCharVowel = false;
+      // rule 1
+      if (vowels.includes(chars[i])) {
         numVowels++;
+        isCurrentCharVowel = true;
       }
-    });
+      // rule 2
+      if (isCurrentCharVowel && vowels.includes(previousLetter)) {
+        numVowels--;
+      }
+      previousLetter = chars[i];
+    }
     return numVowels;
   }
 
