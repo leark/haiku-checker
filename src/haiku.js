@@ -18,43 +18,88 @@ export default class Haiku {
     }
   }
 
+  // returns # of syllables in word
   countSyllables(word) {
     const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    const consonants = [
+      'b',
+      'c',
+      'd',
+      'f',
+      'g',
+      'h',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'v',
+      'w',
+      'x',
+      'z',
+    ];
     word = word.toLowerCase();
     const chars = word.split('');
 
     let numVowels = 0;
     let previousLetter = chars[0];
+    if (vowels.includes(previousLetter)) {
+      numVowels++;
+    }
     // previousLetter = s
     // s e a s o n
     // starting the loop at e
+    let rule3Index = -1;
     for (let i = 1; i < chars.length; i++) {
       let isCurrentCharVowel = false;
-      // rule 1
+      // rule 1 - count the vowels in the word
       if (vowels.includes(chars[i])) {
-        numVowels++;
-        isCurrentCharVowel = true;
+        if (i === chars.length - 1 && chars[i] === 'e') {
+          if (previousLetter === 'l') {
+            numVowels++;
+          }
+        } else {
+          numVowels++;
+          isCurrentCharVowel = true;
+        }
       }
-      // rule 2
+      // rule 2 - subtract one vowel from every diphthong
       if (isCurrentCharVowel && vowels.includes(previousLetter)) {
         numVowels--;
+      }
+      // rule 3 - Divide between two middle consonants.
+      if (
+        consonants.includes(previousLetter) &&
+        consonants.includes(chars[i])
+      ) {
+        rule3Index = i - 1;
       }
       previousLetter = chars[i];
     }
     return numVowels;
   }
 
+  // returns # of syllables in a line
   countSyllablesInLine(line) {
-    // uses countSyllables
+    let words = line.split(' ');
+    let countedSyllables = 0;
+    for (let i = 0; i < words.length; i++) {
+      countedSyllables += parseInt(this.countSyllables(words[i]));
+    }
+    return countedSyllables;
   }
 
   isThisProperHaiku() {
-    // uses countSyllablesInLine on line1,2,3
     if (this.lineCount()) {
       return (
-        this.countSyllablesInLine(this.line1) &&
-        this.countSyllablesInLine(this.line2) &&
-        this.countSyllablesInLine(this.line3)
+        this.countSyllablesInLine(this.line1) === 5 &&
+        this.countSyllablesInLine(this.line2) === 7 &&
+        this.countSyllablesInLine(this.line3) === 5
       );
     }
     return false;
