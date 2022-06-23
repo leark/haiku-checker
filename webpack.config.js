@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Haiku Checker',
+      title: 'haiku-checker',
       template: './src/index.html',
       inject: 'body',
     }),
