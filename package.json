@@ -4,7 +4,10 @@
   "description": "* _HTML_\r * _CSS_\r * _Bootstrap_\r * _jQuery_\r * _npm_\r * _webpack_\r * _eslint_\r * _babel_\r * _html-loader_\r * _style-loader_\r * _css-loader_\r * _file-loader_\r * _jest_",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode development",
+    "start": "npm run build && webpack-dev-server --open --mode development",
+    "lint": "eslint src/*.js",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
