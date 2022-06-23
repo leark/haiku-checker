@@ -18,12 +18,38 @@ export default class Haiku {
     }
   }
 
-  countSyllables() {
-    // stuff
+  countSyllables(word) {
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    word = word.toLowerCase();
+    const chars = word.split('');
+    let numVowels = 0;
+    chars.forEach((element) => {
+      if (vowels.includes(element)) {
+        numVowels++;
+      }
+    });
+    return numVowels;
+  }
+
+  countSyllablesInLine(line) {
+    // uses countSyllables
+  }
+
+  isThisProperHaiku() {
+    // uses countSyllablesInLine on line1,2,3
+    if (this.lineCount()) {
+      return (
+        this.countSyllablesInLine(this.line1) &&
+        this.countSyllablesInLine(this.line2) &&
+        this.countSyllablesInLine(this.line3)
+      );
+    }
+    return false;
   }
 }
 
 /*
+
 
 constructor
   option 1

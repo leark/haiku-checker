@@ -26,7 +26,13 @@ describe('Haiku', () => {
   });
 
   // rule 1
-  test('every syllable has a vowel', () => {
-    expect(haiku.countSyllables('nose')).toEqual(1);
+  test('count the vowels in the word', () => {
+    expect(haiku.countSyllables('my')).toEqual(1);
+    expect(haiku.countSyllables('nose')).toEqual(2);
+  });
+
+  // rule 2
+  test('subtract one vowel from every diphthong (e.g. e in deep or a in season)', () => {
+    expect(haiku.countSyllables('season')).toEqual(2);
   });
 });
